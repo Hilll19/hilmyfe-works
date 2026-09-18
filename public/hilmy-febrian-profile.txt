@@ -1,0 +1,53 @@
+MOCHAMAD HILMY FEBRIAN EKA CAHYADI
+Fullstack Developer & System Development Engineer
+Industrial Digitalization Specialist
+
+PROFILE SUMMARY
+This summary is generated from the portfolio brief. It is not the original CV.
+
+CONTACT
+Email: hilworking0110@gmail.com
+GitHub: https://github.com/Hilll19
+LinkedIn: https://linkedin.com/in/hilmyfebrian-hildev
+
+PROFILE
+2.5+ years delivering end-to-end digital solutions across manufacturing,
+logistics, and fintech: web apps, SAP/ERP integration, and IoT/OT connectivity.
+
+SELECTED PROJECTS
+- MES OEE Machine & SAP Integration: Three-tier MES connecting 10 PLC machines
+  via Modbus, MQTT, and Node-RED, with real-time OEE and SAP confirmation.
+- E-Manifest & API Gateway: Centralized gateway integrating three backend
+  systems using .NET 8, Nginx, Docker, Azure DevOps CI/CD, and GCP.
+- SAP PR/PO Web Interface: License usage reduced from 50 to approximately 35
+  seats; projected group-wide savings of IDR 2.5-4.5 billion/year across nine
+  subsidiaries. Laravel, SOAP API, SAP ECC, MySQL.
+- Warehouse Management System: Barcode intake, FIFO tracking, SLOC mapping,
+  production planning, and real-time SAP stock synchronization.
+- PolyboxRak Tracker: QR tracking for 20,000-30,000 polyboxes, laying the
+  foundation for projected asset loss reduction of ~IDR 1 billion/year.
+- Hajj Registration & Billing Platform: Registration, automated billing,
+  debit card generation, and PDF documents for CITIFIN.
+
+EXPERIENCE
+Aug 2025 - Present | IT Staff - System Development
+PT Trimitra Chitrahasta (Dharma Group)
+
+May 2025 - Aug 2025 | Fullstack Developer (Freelance), CITIFIN
+Feb 2025 - Jul 2025 | Fullstack Developer, PT Alfabizz Teknologi
+  for PT Lestari Jaya Raya Logistics
+Oct 2024 - Jan 2025 | IT Developer Intern, PT Trimitra Chitrahasta
+Mar 2024 - May 2024 | Web Developer Intern, LuarSekolah
+Sep 2023 - Feb 2024 | IT Intern, PT Prima Layanan Niaga Suku Cadang
+
+EDUCATION
+B.Tech Information Technology, President University (2021-2024)
+
+SKILLS
+Frontend: HTML, CSS, JavaScript, ReactJS, NextJS, Livewire, TailwindCSS,
+Bootstrap, SCSS, jQuery
+Backend: PHP, Laravel, CodeIgniter, ExpressJS, ASP.NET Core
+Database: MySQL, PostgreSQL
+Enterprise: SAP ECC, SOAP API, RESTful API, Postman
+Industrial/IoT: Modbus (PLC), MQTT, Node-RED, Open Modsim
+Cloud/DevOps: Docker, Git, Azure, Ubuntu Server (GCP VM)
