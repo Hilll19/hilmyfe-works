@@ -18,8 +18,18 @@ function ProjectVisual({ type }: { type: string }) {
 
 export default function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [selected, setSelected] = useState<(typeof projects)[number] | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('hilmyfe-theme');
+      if (saved === 'light') {
+        setTheme('light');
+        document.documentElement.dataset.theme = 'light';
+      }
+    } catch { /* Theme still works when storage is unavailable. */ }
+  }, []);
   useEffect(() => {
     if (selected) { dialog.current?.showModal(); document.body.style.overflow = 'hidden'; }
     return () => { document.body.style.overflow = ''; };
@@ -31,14 +41,23 @@ export default function Portfolio() {
     return () => window.removeEventListener('keydown', closeOnEscape);
   }, [menuOpen]);
   const closeProject = () => { dialog.current?.close(); setSelected(null); };
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('hilmyfe-theme', next); } catch { /* Keep the selected theme for this visit. */ }
+  };
 
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="site-header">
       <a href="#home" className="wordmark" aria-label="Hilmy Febrian home">h<span>f</span><span className="wordmark-period">.</span><small>HILMY FEBRIAN</small></a>
       <nav aria-label="Main navigation" id="main-navigation" className={menuOpen ? 'nav-links open' : 'nav-links'}>{[['Home', 'home'], ['About', 'about'], ['Works', 'works'], ['Contact', 'contact']].map(([title, id]) => <a href={`#${id}`} key={id} onClick={() => setMenuOpen(false)}>{title}<span>↗</span></a>)}</nav>
-      <a className="header-contact" href="mailto:hilworking0110@gmail.com">Let’s talk <Arrow diagonal /></a>
-      <button className="menu-toggle" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? 'Close −' : 'Menu +'}</button>
+      <div className="header-actions">
+        <button className="theme-toggle" type="button" aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`} aria-pressed={theme === 'light'} onClick={toggleTheme}><span className="theme-icon" aria-hidden="true">{theme === 'dark' ? '☀' : '☾'}</span><span>{theme === 'dark' ? 'Light' : 'Dark'}</span></button>
+        <a className="header-contact" href="mailto:hilworking0110@gmail.com">Let’s talk <Arrow diagonal /></a>
+        <button className="menu-toggle" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? 'Close −' : 'Menu +'}</button>
+      </div>
     </header>
 
     <main id="main">
@@ -56,12 +75,12 @@ export default function Portfolio() {
           <div className="hero-bottom"><a href="#structure" className="scroll-cue"><span>↓</span> SCROLL TO CONNECT THE DOTS</a><p>MOCHAMAD HILMY FEBRIAN EKA CAHYADI<span>INDUSTRIAL DIGITALIZATION SPECIALIST</span></p><span className="hero-index">01 — 04</span></div>
         </section>
 
-        <section id="structure" className="story-section section-shell" aria-labelledby="structure-title"><Reveal className="story-copy"><span className="eyebrow">01 / LISTEN TO THE SIGNAL</span><h2 id="structure-title">From raw data.<br /><span className="muted">To a shared language.</span></h2><p>A machine speaks in signals. I turn those signals into structured data that people and systems can understand.</p><div className="story-protocol"><span>MODBUS</span><Arrow /><span>MQTT</span><Arrow /><span>NODE-RED</span></div></Reveal><span className="story-caption">SIGNAL → STRUCTURE</span></section>
-        <section className="story-section section-shell" aria-labelledby="factory-title"><Reveal className="story-copy"><span className="eyebrow">02 / CONNECT THE FLOOR</span><h2 id="factory-title">A factory.<br /><span className="muted">With a digital pulse.</span></h2><p>Ten PLC machines. One connected production floor. Real-time OEE turns operational blind spots into a clearer picture.</p><div className="story-stat">10<span>PLC MACHINES<br />CONNECTED</span></div></Reveal><span className="story-caption">STRUCTURE → INTELLIGENCE</span></section>
-        <section className="story-section section-shell" aria-labelledby="enterprise-title"><Reveal className="story-copy"><span className="eyebrow">03 / COMPLETE THE CONNECTION</span><h2 id="enterprise-title">Factory floor.<br /><span className="muted">Meet the boardroom.</span></h2><p>Production data flows into dashboards and SAP. Physical operations and enterprise decisions, finally in sync.</p><a className="text-link" href="#works">See the systems behind the story <Arrow diagonal /></a></Reveal><span className="story-caption">INTELLIGENCE → IMPACT</span></section>
+        <section id="structure" className="story-section section-shell" aria-labelledby="structure-title"><Reveal className="story-copy"><span className="eyebrow">01 / CAPTURE PRODUCTION DATA</span><h2 id="structure-title">I bring machine data<br /><span className="muted">into software.</span></h2><p>I connect PLC signals through Modbus, MQTT, and Node-RED so production data is available as it happens.</p><div className="story-protocol"><span>MODBUS</span><Arrow /><span>MQTT</span><Arrow /><span>NODE-RED</span></div></Reveal><span className="story-caption">MACHINES → DATA</span></section>
+        <section className="story-section section-shell" aria-labelledby="factory-title"><Reveal className="story-copy"><span className="eyebrow">02 / MONITOR THE PRODUCTION FLOOR</span><h2 id="factory-title">I make production<br /><span className="muted">visible in real time.</span></h2><p>For 10 PLC-connected machines, I built an operator kiosk and dashboards showing OK/NG output, downtime, Availability, and OEE.</p><div className="story-protocol"><span>OK/NG</span><Arrow /><span>DOWNTIME</span><Arrow /><span>OEE</span></div></Reveal><span className="story-caption">DATA → DECISIONS</span></section>
+        <section className="story-section section-shell" aria-labelledby="enterprise-title"><Reveal className="story-copy"><span className="eyebrow">03 / INTEGRATE WITH SAP</span><h2 id="enterprise-title">I connect production<br /><span className="muted">to enterprise systems.</span></h2><p>My MES confirms production quantities directly to SAP. I also build warehouse and procurement applications that make SAP workflows easier for teams to use.</p><a className="text-link" href="#works">Explore how I built these systems <Arrow diagonal /></a></Reveal><span className="story-caption">PRODUCTION → SAP</span></section>
       </div>
 
-      <section className="impact-strip section-shell" aria-label="Selected project impact"><div><strong>2.5<span>+</span></strong><p>Years building<br />end-to-end systems</p></div><div><strong>≈1B<span> IDR</span></strong><p>Projected annual<br />asset loss reduction</p></div><div><strong>9</strong><p>Subsidiaries in<br />procurement rollout scope</p></div><div><strong>10</strong><p>PLC machines<br />connected in real time</p></div></section>
+      <section className="impact-strip section-shell" aria-label="Experience and selected work"><div><strong>2.5<span>+</span></strong><p>Years building<br />fullstack systems</p></div><div><strong>10</strong><p>PLC machines<br />integrated into the MES</p></div><div><strong>9</strong><p>Dharma subsidiaries supported<br />by the PR/PO application</p></div><div><strong>3</strong><p>Backend systems connected<br />through one API gateway</p></div></section>
 
       <section id="works" className="works-section section-shell" aria-labelledby="works-title"><div className="section-heading"><Reveal><span className="eyebrow">// SELECTED WORKS</span><h2 id="works-title">Built for the<br /><span className="muted">real world.</span></h2></Reveal><p>Systems that move materials, connect machines,<br className="desktop-break" /> and make complex operations feel simple.<span>06 SELECTED PROJECTS / 03 INDUSTRIES</span></p></div>
         <div className="projects-grid">{projects.map(project => <Reveal key={project.id}>
