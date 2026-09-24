@@ -95,3 +95,8 @@
 :root[data-theme='light'] .project-art,:root[data-theme='light'] .project-visual,:root[data-theme='light'] .world-dashboard{--mint:#89edcf;--amber:#e5a16c;--ink:#e9efed}
 :root[data-theme='light'] .project-visual{color:#e9efed}
 @media(max-width:767px){:root[data-theme='light'] .nav-links{background:#f3f7f4f5}:root[data-theme='light'] .story-copy{background:linear-gradient(90deg,#f3f7f4f0,transparent)}:root[data-theme='light'] .scene-layer:after{background:linear-gradient(90deg,#f3f7f47a,transparent)}}
+
+/* Keep the fixed header full bleed while its contents follow the page gutters. */
+.site-header{left:0;right:0;padding-inline:6.25%}
+@media(min-width:1600px){.site-header{padding-inline:max(6.25%,calc((100vw - 1575px)/2))}}
+@media(max-width:767px){.site-header{padding-inline:6%}.nav-links{left:0;right:0}}
